@@ -8,7 +8,7 @@
           <h3>{{ list.title }}</h3>
         </div>
         <div>
-          <button @click="showDetails(list._id)">more</button>
+          <button @click="showDetails(list._id)">more...</button>
            <detailsList v-if="idnumber===list._id" :idnumber="idnumber" />
         </div>
       </li>
