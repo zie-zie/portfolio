@@ -1,30 +1,32 @@
 <template>
   <div class="container">
     <h1>{{ title }}</h1>
-    <ul v-for="(list, index) in todolist" :key="list._id" class="list">
-      <li class="list-item">
+    <ul>
+      <li v-for="(list, index) in todolist" :key="list._id" class="list-item">
         <div class="item-index">{{ index + 1 }}</div>
         <div class="item-content">
-          <h3>{{ list.title }} </h3>
+          <h3>{{ list.title }}</h3>
         </div>
         <div>
-            <button> more</button>
-          </div>
+          <button @click="showDetails(list._id)">more</button>
+           <detailsList v-if="idnumber===list._id" :idnumber="idnumber" />
+        </div>
       </li>
     </ul>
+   
   </div>
-  <detailsList/>
 </template>
 
 <script>
+import detailsList from './detailsList.vue';
 
-import detailsList from './detailsList';
 export default {
-    name:'todolistAll',
+  name: 'todolistAll',
   data() {
     return {
       todolist: [],
-      title: 'Todo List'
+      title: 'Todo List',
+      idnumber: null,
     };
   },
   mounted() {
@@ -36,7 +38,12 @@ export default {
       })
       .catch((err) => console.error('Error fetching data:', err));
   },
-    components: {
+  methods: {
+    showDetails(id) {
+      this.idnumber = id;
+    },
+  },
+  components: {
     detailsList,
   },
 };
@@ -72,10 +79,6 @@ ul {
   margin: 0;
 }
 
-.list {
-  margin: 10px 0;
-}
-
 .list-item {
   display: flex;
   align-items: center;
@@ -106,18 +109,8 @@ ul {
   color: #333;
 }
 
-.item-content p {
-  margin: 5px 0;
-  font-size: 16px;
-  color: #666;
-}
-
-.item-date, .item-status {
-  font-size: 14px;
-  color: #999;
-}
-button{
-     width: 100px;
+button {
+  width: 100px;
   height: 40px;
   background-color: #fff;
   border: none;
@@ -130,6 +123,7 @@ button{
   cursor: pointer;
   border-radius: 12px;
 }
+
 button:hover {
   background-color: #acb1b6;
 }
