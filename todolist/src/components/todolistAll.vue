@@ -8,12 +8,12 @@
           <h3>{{ list.title }}</h3>
         </div>
         <div>
-          <button @click="showDetails(list._id)">more...</button>
-           <detailsList v-if="idnumber===list._id" :idnumber="idnumber" />
+          <button  class="buttonmore" @click="showDetails(list._id)">more...</button>
+          
+          <detailsList v-if="idnumber === list._id" :idnumber="idnumber" :key="idnumber"/>
         </div>
-      </li>
+      </li> 
     </ul>
-   
   </div>
 </template>
 
@@ -62,9 +62,10 @@ body {
   max-width: 800px;
   margin: auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 h1 {
@@ -108,8 +109,7 @@ ul {
   font-size: 22px;
   color: #333;
 }
-
-button {
+.buttonmore{
   width: 100px;
   height: 40px;
   background-color: #fff;
