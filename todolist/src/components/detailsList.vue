@@ -1,47 +1,29 @@
 <template>
 <div>
-    <div v-if="list&&showmodal" :key="list._id" >
-      <div class="modal" >
-        <div><button @click="showmodal=!showmodal" class="closemodalbuttom">X</button></div>
-        <h2>Details</h2>
-      <p>{{ list.description }}</p>
-    </div>
-  </div>
+  <DetailModal :id="idnumber" v-if="showmodal" @closeModal="showmodal= false" />
 
 </div>
 </template>
 
 <script>
+import DetailModal from "./DetailModal.vue"
 export default {
+  components:{DetailModal},
   name: 'detailsList',
   props: ['idnumber'],
   data() {
     return {
-      list: null,
+    
       showmodal:true
     };
   },
-  watch: {
-    idnumber: {
-      immediate: true,
-      handler(newVal) {
-        this.fetchDetails(newVal);
-      },
-    },
-  },
-  methods: {
-    fetchDetails(id) {
-      fetch('http://localhost:3000/api/v1/todo')
-        .then((res) => res.json())
-        .then((data) => {
-          this.list = data.todos.find(item => item._id === id);
-          console.log('Fetched data:',this.list );
-        })
-        .catch((err) => console.error('Error fetching data:', err));
-    },
-    
-    
-  },
+  methods:{
+    handleClickMore() {
+      this.showmodal = !this.showmodal
+      
+    }
+  }
+
 };
 </script>
 <style>
