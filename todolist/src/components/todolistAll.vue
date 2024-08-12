@@ -90,7 +90,7 @@ ul {
 }
 
 .list-item:hover {
-  background-color: #e2e2e2;
+  background-color: #b1d3d1;
 }
 
 .item-index {

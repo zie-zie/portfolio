@@ -1,7 +1,6 @@
 <template>
 <div>
   <DetailModal :id="idnumber" v-if="showmodal" @closeModal="showmodal= false" />
-
 </div>
 </template>
 
@@ -24,22 +23,9 @@ export default {
     }
   }
 
-  
 };
 </script>
 <style>
-.modal {
-  background: rgb(211, 233, 235);
-  padding: 20px;
-  border-radius: 8px;
-  width: 400px;
-  max-width: 100%;
-  text-align: center;
-  z-index: 1;
-  position: fixed; 
-  left: 50%;
-  transform: translate(-50%, -50%); 
-}
 
 .closemodal {
   color: rgb(17, 20, 22);

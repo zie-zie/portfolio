@@ -55,6 +55,7 @@ button:hover.opt {
 }
 body{
   background: #d1d6db;
+  position: relative;
 
 }
 </style>

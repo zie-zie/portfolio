@@ -39,33 +39,18 @@
     </script>
     <style>
     .modal {
-      background: rgb(211, 233, 235);
+      background: rgb(223, 224, 224);
       padding: 20px;
       border-radius: 8px;
       width: 400px;
       max-width: 100%;
       text-align: center;
       z-index: 1;
-      position: fixed; 
       left: 50%;
       transform: translate(-50%, -50%); 
+    top:200px ;
+    left:  450px;
+    position: absolute;
     }
     
-    .closemodal {
-      color: rgb(17, 20, 22);
-      width: 30px;
-      height: 30px;
-      background: white;
-      border: none;
-      font-size: 18px;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-      border-radius: 20%;
-    }
-    
-    .closemodal:hover {
-      background: #ccc;
-    }
     </style>
