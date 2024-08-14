@@ -27,7 +27,7 @@ export default {
     };
   },
   mounted() {
-    fetch('http://localhost:3000/api/info')
+    fetch('https://todoapi.arjoni.de/api/info')
       .then((res) => res.json())
       .then((data) => {
         console.log('Fetched data:', data);

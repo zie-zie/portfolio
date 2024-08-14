@@ -18,7 +18,7 @@
       },
       methods: {
         fetchDetails(id) {
-          fetch('http://localhost:3000/api/v1/todo')
+          fetch('https://todoapi.arjoni.de/api/v1/todo')
             .then((res) => res.json())
             .then((data) => {
               this.list = data.todos.find(item => item._id === id);

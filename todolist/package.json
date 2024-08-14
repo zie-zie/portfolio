@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "deploy": "npm run build && rsync -avz --delete dist/ $SERVER_USER@$SERVER_HOST:$SERVER_PATH"
   },
   "dependencies": {
     "axios": "^1.7.3",

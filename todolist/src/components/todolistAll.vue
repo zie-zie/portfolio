@@ -2,35 +2,28 @@
   <div class="container">
     <h1>{{ title }}</h1>
     <ul>
-      <li v-for="(list, index) in todolist" :key="list._id" class="list-item">
-        <div class="item-index">{{ index + 1 }}</div>
-        <div class="item-content">
-          <h3>{{ list.title }}</h3>
-        </div>
-        <div>
-          <button  class="buttonmore" @click="showDetails(list._id)">more...</button>
-          
-          <detailsList v-if="idnumber === list._id" :idnumber="idnumber" :key="idnumber"/>
-        </div>
+      <li v-for="(todoItem, index) in todolist" :key="todoItem._id" class="list-item">
+        <TodoItem :todoItem="todoItem" :shownIndex="index" />
       </li> 
     </ul>
   </div>
 </template>
 
 <script>
-import detailsList from './detailsList.vue';
+
+import TodoItem from './TodoItem.vue';
 
 export default {
   name: 'todolistAll',
+
   data() {
     return {
       todolist: [],
       title: 'Todo List',
-      idnumber: null,
     };
   },
   mounted() {
-    fetch('http://localhost:3000/api/v1/todo')
+    fetch('https://todoapi.arjoni.de/api/v1/todo')
       .then((res) => res.json())
       .then((data) => {
         console.log('Fetched data:', data);
@@ -38,18 +31,14 @@ export default {
       })
       .catch((err) => console.error('Error fetching data:', err));
   },
-  methods: {
-    showDetails(id) {
-      this.idnumber = id;
-    },
-  },
+
   components: {
-    detailsList,
+  TodoItem,
   },
 };
 </script>
 
-<style>
+<style > 
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
@@ -93,38 +82,5 @@ ul {
   background-color: #b1d3d1;
 }
 
-.item-index {
-  font-size: 20px;
-  font-weight: bold;
-  color: #555;
-  margin-right: 20px;
-}
 
-.item-content {
-  flex-grow: 1;
-}
-
-.item-content h3 {
-  margin: 0;
-  font-size: 22px;
-  color: #333;
-}
-.buttonmore{
-  width: 100px;
-  height: 40px;
-  background-color: #fff;
-  border: none;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 12px;
-}
-
-button:hover {
-  background-color: #acb1b6;
-}
 </style>

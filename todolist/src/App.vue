@@ -1,61 +1,149 @@
-<template>
-  <div id="app">
-    <p>
-    <button class="opt" @click="showinfo = !showinfo ,showtodo=false">{{ showinfo ? 'Hide Info' : 'Show Info' }}</button>
-    <button class="opt" @click="showtodo = !showtodo , showinfo=false">{{ showtodo ? 'Hide ToDo' : 'Show ToDo' }}</button>
-    </p>
-     <apiinfo v-if="showinfo"/>
-    <todolistAll v-if="showtodo"/>
-  </div>
+  <template>
+    <div class="header"> 
+      <p><img src="./assets/logo.png" class="image"></p> 
+      <p><button class="opt" @click="showinfo = !showinfo ,showtodo=false,showAddList=false">{{ showinfo ? 'Hide Info' : 'Show Info' }}</button></p>
+      <p><button class="opt" @click="showtodo = !showtodo , showinfo=false,showAddList=false">{{ showtodo ? 'Hide ToDo' : 'Show ToDo' }}</button></p>
+    </div>
+    <div id="app">
+       <ApiInfo v-if="showinfo"/>
+       <todolistAll v-if="showtodo"/>
+    </div>
+    <div>
+        <div class="footer" @click="showAddList=!showAddList ,showtodo=false ,showinfo=false"><button class="addtodoButton" >+</button>
+        </div>
+       <AddTodoList v-if="showAddList"/>
+  </div>  
 </template>
 
 <script>
-import apiinfo from './components/apiinfo'
+import ApiInfo from './components/ApiInfo'
 import todolistAll from './components/todolistAll'
+import AddTodoList from './components/AddTodoList'
 
 export default {
   name: 'App',
   data() {
     return {
       showinfo: false,
-      showtodo:false
+      showtodo: false,
+      showAddList:false
     };
   },
   components: {
-    apiinfo,todolistAll,
+    ApiInfo, todolistAll,AddTodoList
   },
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-.opt {
-  width: 100px;
-  height: 40px;
-  background-color: #666b67;
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 12px;
-}
-button:hover.opt {
-  background-color: #818167;
-}
-body{
-  background: #d1d6db;
-  position: relative;
 
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #e7faf7;
+  margin: 0;
+  padding: 0;
 }
+
+
+#app {
+  text-align: center;
+  color: #34495e;
+  margin-top: 50px;
+}
+
+
+.header {
+  display: flex;
+  align-items: center;
+  background: #1abc9c;
+  width: 100%;
+  height: 70px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+
+.image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+
+.opt {
+  width: 110px;
+  height: 35px;
+  background-color: #1abc9c;
+  color: #ecf0f1;
+  border: none;
+  border-radius: 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.opt:hover {
+  background-color: #149174;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:focus {
+  outline: none;
+}
+
+
+.opt:active {
+  background-color: #1abc9c;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+.footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  }
+
+.addtodoButton {
+  width: 100%;
+  height: 100%;
+  background-color: #1abc9c;
+  color: #ecf0f1;
+  border: none;
+  border-radius: 50%;
+  font-size: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.addtodoButton:hover {
+  background-color: #149174;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.addtodoButton:active {
+  background-color: #16a085;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
 </style>
