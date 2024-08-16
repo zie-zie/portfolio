@@ -8,11 +8,10 @@
        <ApiInfo v-if="showinfo"/>
        <todolistAll v-if="showtodo"/>
     </div>
-    <div>
-        <div class="footer" @click="showAddList=!showAddList ,showtodo=false ,showinfo=false"><button class="addtodoButton" >+</button>
-        </div>
-       <AddTodoList v-if="showAddList"/>
-  </div>  
+    <div class="footer">
+        <router-link :to="{name:'AddTodoList'}" class="addtodo" @click="showtodo=false,showinfo=false">+</router-link>  
+    </div>  
+    <router-view/>
 </template>
 
 <script>
@@ -56,7 +55,6 @@ body {
   display: flex;
   align-items: center;
   background: #1abc9c;
-  width: 100%;
   height: 70px;
   padding: 10px 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -123,25 +121,30 @@ button:focus {
 
   }
 
-.addtodoButton {
+.addtodo {
   width: 100%;
   height: 100%;
   background-color: #1abc9c;
   color: #ecf0f1;
   border: none;
-  border-radius: 50%;
-  font-size: 50px;
+ border-radius: 50%; 
+  font-size:30px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  text-align: center;
+  text-align: center;
+  line-height: 100px; 
+
 }
 
-.addtodoButton:hover {
+.addtodo:hover {
   background-color: #149174;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.addtodoButton:active {
+.addtodo:active {
   background-color: #16a085;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }

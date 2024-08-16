@@ -23,6 +23,7 @@ export default {
     };
   },
   mounted() {
+    this.$router.push('/App.vue');
     fetch('https://todoapi.arjoni.de/api/v1/todo')
       .then((res) => res.json())
       .then((data) => {

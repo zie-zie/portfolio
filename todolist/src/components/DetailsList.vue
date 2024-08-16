@@ -8,7 +8,7 @@
 import DetailModal from "./DetailModal.vue"
 export default {
   components:{DetailModal},
-  name: 'detailsList',
+  name: 'DetailsList',
   props: ['idnumber'],
   data() {
     return {

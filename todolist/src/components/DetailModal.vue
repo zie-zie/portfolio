@@ -1,16 +1,19 @@
 <template>
-<div class="modal" >
-            <div><button @click="onCloseModal" >X</button></div>
-            <h2>Details</h2>
+    <div class="modal" >
+          <CloseButton @closebutton="onCloseModal"/>
+          <h2>Details</h2>
           <p>{{ list?.description }}</p>
-        </div>
-    </template>
+    </div>
+</template>
     
     <script>
-
+    import CloseButton from './CloseButton.vue';
     export default {
       name: 'DetailModal',
       props: ['id'],
+      components:{
+       CloseButton,
+      },
       data() {
         return {
           list: null,
