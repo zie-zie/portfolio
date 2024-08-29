@@ -5,28 +5,48 @@
         </div>
         <div>
           <button  class="buttonmore" @click="showDetails()">more...</button>
-          
           <DetailModal :id="todoItem._id" v-if="showModal" @closeModal="showModal= false" />
+
+          <button @click="showMassage()"> Delete</button>
+          <DeleteMassage  :id="todoItem._id" :title="todoItem.title"  v-if="showDelete"  @closeModal="showDelete= false" @DeleteSelectItem="DeleteItem" />
+          
+          <router-link :to="{name:'EditItem'}"  :id="todoItem._id"><button>Edit</button></router-link>
         </div>
 </template>
 
 <script>
+import DeleteMassage from './DeleteMassage.vue';
 import DetailModal from './DetailModal.vue';
 export default {
     name:'TodoItem',
     props:['todoItem', 'shownIndex'],
     components:{
-        DetailModal ,
+        DetailModal ,DeleteMassage
     },
     data(){
         return{
             showModal: false,
+            showDelete:false,
+            deleteItem:false
         }
     },
     methods: {
     showDetails() {
       this.showModal = true;
     },
+    showMassage(){
+      this.showDelete=true;
+      
+
+    },
+    DeleteItem(){
+      this.deleteItem=true;
+      this.showDelete=false;
+      
+
+    },
+    
+ 
   },
 }
 </script>
