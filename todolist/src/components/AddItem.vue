@@ -7,9 +7,9 @@
           <br>
           <label for="date">onDate: </label><input type="date" v-model="inputDate">
           <br><br>
-         <input type="radio" value="Red" id="red" name="color" v-model="selectedColor"><label> red</label>&nbsp;
-         <input type="radio" value="Green" id="green" name="color" v-model="selectedColor"><label> green</label>&nbsp;
-         <input type="radio" value="Yellow" id="yellow" name="color" v-model="selectedColor"><label> yellow</label>
+         <input type="radio" value="#ff6c6c" id="red" name="color" v-model="selectedColor"><label> red</label>&nbsp;
+         <input type="radio" value="#9ff179" id="green" name="color" v-model="selectedColor"><label> green</label>&nbsp;
+         <input type="radio" value="#f1d579" id="yellow" name="color" v-model="selectedColor"><label> yellow</label>
           <br><br>
          <button type="submit">add</button>
      </form>
@@ -37,12 +37,12 @@
            title: this.inputTitle,
            description: this.inputDescription,
            onDate: this.inputDate,
-           color: this.selectedColor,
+           cardColor: this.selectedColor,
            isCompleted:false,
          };
    
          console.log('newList', newList);
-   
+    console.log('color is ',newList.cardColor)
          fetch('https://todoapi.arjoni.de/api/v1/todo', {
            method: 'POST',
            headers: { 'Content-Type': 'application/json' },
@@ -145,6 +145,6 @@
   button:hover {
     background-color: #0b795f;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    color: #ffffff;
+    color:white;
   }
   </style>
