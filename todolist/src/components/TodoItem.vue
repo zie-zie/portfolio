@@ -1,33 +1,37 @@
 <template>
-  <div class="item-index">{{ shownIndex + 1 }}</div>
+  <div class="item-index" :style="{ color: todoItem.cardColor }">{{ shownIndex + 1 }}</div>
         <div class="item-content">
                <h3>{{ todoItem.title }}</h3>
         </div>
+    
         <div>
-          <button  class="buttonmore" @click="showDetails()">more...</button>
+          <button  class="buttonmore" @click="showDetails()" v-if="!EditSelect" >more...</button>
           <DetailModal :id="todoItem._id" v-if="showModal" @closeModal="showModal= false" />
 
-          <button @click="showMassage()"> Delete</button>
+          <button @click="showMassage()" class="buttonmore"  v-if="!EditSelect" > Delete</button>
           <DeleteMassage  :id="todoItem._id" :title="todoItem.title"  v-if="showDelete"  @closeModal="showDelete= false" @DeleteSelectItem="DeleteItem" />
           
-          <router-link :to="{name:'EditItem'}"  :id="todoItem._id"><button>Edit</button></router-link>
+          <button @click="showEdit()" class="buttonmore"  v-if="!EditSelect" >Edit</button>
+          <EditItem :title="todoItem.title" :id="todoItem._id" :cardColor="todoItem.cardColor" :onDate="todoItem.onDate" :description="todoItem.description" v-if="EditSelect" @UpdateSelectItem="UpdateItem"/>
         </div>
 </template>
 
 <script>
 import DeleteMassage from './DeleteMassage.vue';
 import DetailModal from './DetailModal.vue';
+import EditItem from './EditItem.vue';
 export default {
     name:'TodoItem',
     props:['todoItem', 'shownIndex'],
     components:{
-        DetailModal ,DeleteMassage
+        DetailModal ,DeleteMassage,EditItem,
     },
     data(){
         return{
             showModal: false,
             showDelete:false,
-            deleteItem:false
+            deleteItem:false,
+            EditSelect:false,
         }
     },
     methods: {
@@ -42,9 +46,24 @@ export default {
     DeleteItem(){
       this.deleteItem=true;
       this.showDelete=false;
+      this.$emit('changeData');
+        },
       
 
+    
+    showEdit(){
+      this.deleteItem=false;
+      this.showDelete=false;
+      this.EditSelect=true;
+      this.$emit('changeData');
+
     },
+    UpdateItem(){
+     this.EditSelect=false;
+     this.$emit('changeData');
+        
+
+    }
     
  
   },
@@ -60,21 +79,23 @@ export default {
   margin-right: 20px;
 }
 .buttonmore{
-  width: 100px;
-  height: 40px;
+  width: 60px;
+  height: 35px;
   background-color: #fff;
   border: none;
   color: rgb(0, 0, 0);
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 12px;
 }
 .item-content {
   flex-grow: 1;
+ margin-right: 10px;
+  
 }
 
 .item-content h3 {

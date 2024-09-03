@@ -44,7 +44,7 @@ export default {
             .then((data) => {
                 console.log('Deleted data:', data);
                 
-                this.$router.go(0); 
+                
             })
             .catch((err) => console.error('Error fetching data:', err));
         }

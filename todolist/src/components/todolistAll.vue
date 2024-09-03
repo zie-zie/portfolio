@@ -3,14 +3,13 @@
     <h1>{{ title }}</h1>
     <ul>
       <li v-for="(todoItem, index) in todolist" :key="todoItem._id" class="list-item">
-        <TodoItem :todoItem="todoItem" :shownIndex="index" />
+        <TodoItem :todoItem="todoItem" :shownIndex="index" :changeData="changeData"/>
       </li> 
     </ul>
   </div>
 </template>
 
 <script>
-
 import TodoItem from './TodoItem.vue';
 
 export default {
@@ -22,22 +21,31 @@ export default {
       title: 'Todo List',
     };
   },
-  mounted() {
-    this.$router.push('/App.vue');
-    fetch('https://todoapi.arjoni.de/api/v1/todo')
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('Fetched data:', data);
-        this.todolist = data.todos;
-      })
-      .catch((err) => console.error('Error fetching data:', err));
+  methods: {
+    changeData() {
+      
+      this.fetchTodos();
+    },
+    fetchTodos() {
+      fetch('https://todoapi.arjoni.de/api/v1/todo')
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('Fetched data:', data);
+          this.todolist = data.todos;
+        })
+        .catch((err) => console.error('Error fetching data:', err));
+    }
   },
-
+  mounted() { 
+    this.fetchTodos();
+    
+  },
   components: {
-  TodoItem,
+    TodoItem,
   },
 };
 </script>
+
 
 <style > 
 body {
