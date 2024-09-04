@@ -78,7 +78,7 @@ export default {
                 title: this.inputTitle,
                 description: this.inputDescription,
                 onDate: this.inputDate,
-                color: this.selectedColor
+                cardColor: this.selectedColor
             };
 
             fetch(`https://todoapi.arjoni.de/api/v1/todo/${this.inputId}`, {

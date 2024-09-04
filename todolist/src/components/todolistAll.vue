@@ -23,7 +23,6 @@ export default {
   },
   methods: {
     changeData() {
-      console.log('editbeshoooo');
       this.fetchTodos();
     },
     fetchTodos() {
@@ -31,7 +30,7 @@ export default {
         .then((res) => res.json())
         .then((data) => {
           console.log('Fetched data:', data);
-          
+
           this.todolist = data.todos;
         })
         .catch((err) => console.error('Error fetching data:', err));
