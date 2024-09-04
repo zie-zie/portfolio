@@ -24,7 +24,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .add{
  
   background-color: #ffffff;

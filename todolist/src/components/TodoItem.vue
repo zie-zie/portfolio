@@ -12,7 +12,8 @@
           <DeleteMassage  :id="todoItem._id" :title="todoItem.title"  v-if="showDelete"  @closeModal="showDelete= false" @DeleteSelectItem="DeleteItem" />
           
           <button @click="showEdit()" class="buttonmore"  v-if="!EditSelect" >Edit</button>
-          <EditItem :title="todoItem.title" :id="todoItem._id" :cardColor="todoItem.cardColor" :onDate="todoItem.onDate" :description="todoItem.description" v-if="EditSelect" @UpdateSelectItem="UpdateItem"/>
+          <EditItem :title="todoItem.title" :id="todoItem._id" :cardColor="todoItem.cardColor"
+           :onDate="todoItem.onDate" :description="todoItem.description" v-if="EditSelect" @UpdateSelectItem="UpdateItem"/>
         </div>
 </template>
 

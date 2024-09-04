@@ -3,7 +3,7 @@
     <h1>{{ title }}</h1>
     <ul>
       <li v-for="(todoItem, index) in todolist" :key="todoItem._id" class="list-item">
-        <TodoItem :todoItem="todoItem" :shownIndex="index" :changeData="changeData"/>
+        <TodoItem :todoItem="todoItem" :shownIndex="index" @changeData="changeData"/>
       </li> 
     </ul>
   </div>
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     changeData() {
-      
+      console.log('editbeshoooo');
       this.fetchTodos();
     },
     fetchTodos() {
@@ -31,6 +31,7 @@ export default {
         .then((res) => res.json())
         .then((data) => {
           console.log('Fetched data:', data);
+          
           this.todolist = data.todos;
         })
         .catch((err) => console.error('Error fetching data:', err));

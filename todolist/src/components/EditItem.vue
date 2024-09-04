@@ -1,7 +1,10 @@
 <template>
 
     <div class="editform">
+        
         <form @submit.prevent="handleSubmit">
+            <CloseButton/>
+
             <label>TITLE: </label>
             <input type="text" required v-model="inputTitle">
 
@@ -17,14 +20,19 @@
             <input type="radio" value="#9ff179" id="green" name="color" v-model="selectedColor"><label for="green">Green</label>&nbsp;
             <input type="radio" value="#f1d579" id="yellow" name="color" v-model="selectedColor"><label for="yellow">Yellow</label>
             <br><br>
-            <button type="submit">Update</button>
+            <button type="submit" >Update</button>
         </form>
     </div>
 </template>
 
 <script>
+import CloseButton from './CloseButton.vue';
+
 export default {
     name: 'EditItem',
+    components:{
+       CloseButton,
+      },
     props: {
         title: {
             type: String,
@@ -63,7 +71,9 @@ export default {
             return date.toISOString().split('T')[0]; 
         },
         handleSubmit() {
-            
+
+            this.$emit('UpdateSelectItem');
+
             const updatedTodo = {
                 title: this.inputTitle,
                 description: this.inputDescription,
@@ -84,19 +94,27 @@ export default {
                
             })
             .catch((err) => console.error('Error updating data:', err));
-            this.$emit('UpdateSelectItem');
+           
         }
     }
 };
 </script>
 <style scoped>
 .editform{
-    background-color: #ffffff;
+    background-color: #babbbb;
     padding: 20px;
-    max-width: 600px;
-    max-height: 300px;
+    width: 550px;
+    height: 300px;
     margin: 20px auto;
     font-family: 'Roboto', sans-serif;
+    text-align: center;
+      z-index: 1;
+      left: 50%;
+      transform: translate(-50%, -50%); 
+    top:200px ;
+    left:  420px;
+    position: absolute;
+    border-radius: 20px;
   
 
 }
