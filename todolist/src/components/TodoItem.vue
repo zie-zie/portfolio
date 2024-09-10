@@ -9,7 +9,7 @@
           <DetailModal :id="todoItem._id" v-if="showModal" @closeModal="showModal= false" />
 
           <button @click="showMassage()" class="buttonmore"  v-if="!EditSelect" > Delete</button>
-          <DeleteMassage  :id="todoItem._id" :title="todoItem.title"  v-if="showDelete"  @closeModal="showDelete= false" @DeleteSelectItem="DeleteItem" />
+          <DeleteMassage  :id="todoItem._id" :title="todoItem.title"  v-if="showDelete"  @closeModal="showDelete= false" @DeleteSelectItem="DeleteSelectItem" />
           
           <button @click="showEdit()" class="buttonmore"  v-if="!EditSelect" >Edit</button>
           <EditItem :title="todoItem.title" :id="todoItem._id" :cardColor="todoItem.cardColor"
@@ -44,7 +44,7 @@ export default {
       
 
     },
-    DeleteItem(){
+    DeleteSelectItem(){
       this.deleteItem=true;
       this.showDelete=false;
       this.$emit('changeData');
@@ -56,7 +56,7 @@ export default {
       this.deleteItem=false;
       this.showDelete=false;
       this.EditSelect=true;
-      this.$emit('changeData');
+      
 
     },
     UpdateItem(){
@@ -72,6 +72,18 @@ export default {
 </script>
 
 <style>
+.backmodal{
+  background-color: #ffffff;
+    width: 100vw;
+    height: 100vw;
+      z-index: 1;
+     transform: translate(-50%, -50%); 
+  
+    left:  420px;
+    position: absolute;
+    opacity: 0.5;
+   
+}
 
 .item-index {
   font-size: 20px;

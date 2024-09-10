@@ -24,6 +24,7 @@ export default {
   methods: {
     changeData() {
       this.fetchTodos();
+      console.log('data refresh')
     },
     fetchTodos() {
       fetch('https://todoapi.arjoni.de/api/v1/todo')

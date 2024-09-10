@@ -1,4 +1,5 @@
 <template>
+  <div class="backmodal"></div>
     <div class="modal" >
           <CloseButton @closebutton="onCloseModal"/>
           <h2>Details</h2>
@@ -41,6 +42,7 @@
     };
     </script>
     <style>
+
     .modal {
       background: rgb(223, 224, 224);
       padding: 20px;

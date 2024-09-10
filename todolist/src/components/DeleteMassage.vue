@@ -1,4 +1,5 @@
 <template>
+    <div class="backmodal"></div>
     <div class="del">
         {{ massage }} <b>{{ titleMass }}</b> 
         <div>

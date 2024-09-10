@@ -1,5 +1,5 @@
 <template>
-
+ <div class="backmodal"></div>
     <div class="editform">
         
         <form @submit.prevent="handleSubmit">
@@ -22,7 +22,9 @@
             <br><br>
             <button type="submit" >Update</button>
         </form>
+       
     </div>
+
 </template>
 
 <script>
@@ -100,6 +102,7 @@ export default {
 };
 </script>
 <style scoped>
+
 .editform{
     background-color: #babbbb;
     padding: 20px;
@@ -107,7 +110,6 @@ export default {
     height: 300px;
     margin: 20px auto;
     font-family: 'Roboto', sans-serif;
-    text-align: center;
       z-index: 1;
       left: 50%;
       transform: translate(-50%, -50%); 
