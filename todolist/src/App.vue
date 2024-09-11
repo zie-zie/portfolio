@@ -1,4 +1,5 @@
   <template>
+  
     <div class="header"> 
       <p><img src="./assets/logo.png" class="image"></p> 
       <p><button class="opt" @click="showinfo = !showinfo ,showtodo=false,showAddList=false">{{ showinfo ? 'Hide Info' : 'Show Info' }}</button></p>
@@ -12,20 +13,26 @@
         <router-link :to="{name:'AddTodoList'}" class="addtodo" @click="showtodo=false,showinfo=false">+</router-link>  
     </div>  
     <router-view/>
+    
 </template>
 
 <script>
 import ApiInfo from './components/ApiInfo'
 import todolistAll from './components/todolistAll'
 import AddTodoList from './components/AddTodoList'
-
+import { mapStores } from 'pinia';
+import { useLoginStore } from './stores/LoginStore';
 export default {
   name: 'App',
+  computed:{
+    ...mapStores(useLoginStore)
+  },
   data() {
     return {
       showinfo: false,
       showtodo: false,
-      showAddList:false
+      showAddList:false,
+     
     };
   },
   components: {
