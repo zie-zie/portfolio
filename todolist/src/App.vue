@@ -1,25 +1,29 @@
   <template>
-  
+  <div>
+    
     <div class="header"> 
       <p><img src="./assets/logo.png" class="image"></p> 
-      <p><button class="opt" @click="showinfo = !showinfo ,showtodo=false,showAddList=false">{{ showinfo ? 'Hide Info' : 'Show Info' }}</button></p>
-      <p><button class="opt" @click="showtodo = !showtodo , showinfo=false,showAddList=false">{{ showtodo ? 'Hide ToDo' : 'Show ToDo' }}</button></p>
+      <p><button class="hederButton" @click="showinfo = !showinfo ,showtodo=false,showAddList=false">{{ showinfo ? 'Hide Info' : 'Show Info' }}</button></p>
+      <p><button class="hederButton" @click="showtodo = !showtodo , showinfo=false,showAddList=false">{{ showtodo ? 'Hide ToDo' : 'Show ToDo' }}</button></p>
+      <p><button class="hederButton" @click="lockManage">lock</button></p>
     </div>
     <div id="app">
        <ApiInfo v-if="showinfo"/>
        <todolistAll v-if="showtodo"/>
     </div>
+    <loginUser @loginIsTrue="handelLogin" v-if="loginpage"/>
     <div class="footer">
         <router-link :to="{name:'AddTodoList'}" class="addtodo" @click="showtodo=false,showinfo=false">+</router-link>  
     </div>  
     <router-view/>
-    
+    </div>
 </template>
 
 <script>
 import ApiInfo from './components/ApiInfo'
 import todolistAll from './components/todolistAll'
 import AddTodoList from './components/AddTodoList'
+import LoginUser from './components/LoginUser.vue';
 import { mapStores } from 'pinia';
 import { useLoginStore } from './stores/LoginStore';
 export default {
@@ -32,12 +36,27 @@ export default {
       showinfo: false,
       showtodo: false,
       showAddList:false,
+      name:'',
+      loginpage:true,
      
     };
   },
   components: {
-    ApiInfo, todolistAll,AddTodoList
+    ApiInfo, todolistAll,AddTodoList,LoginUser
   },
+  methods:{
+    handelLogin(){
+      this.loginpage=false;
+      console.log('handellogin')
+    },
+    lockManage(){
+      this.loginpage=true;
+      this.showinfo=false;
+     this.showtodo=false;
+      this.showAddList=false;
+      
+    },
+  }
 };
 </script>
 
@@ -76,7 +95,7 @@ body {
 }
 
 
-.opt {
+.hederButton {
   width: 110px;
   height: 35px;
   background-color: #1abc9c;
@@ -88,7 +107,7 @@ body {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.opt:hover {
+.hederButton:hover {
   background-color: #149174;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
@@ -98,7 +117,7 @@ button:focus {
 }
 
 
-.opt:active {
+.hederButton:active {
   background-color: #1abc9c;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

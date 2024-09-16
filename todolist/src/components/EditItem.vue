@@ -106,8 +106,8 @@ export default {
 .editform{
     background-color: #babbbb;
     padding: 20px;
-    width: 550px;
-    height: 300px;
+    width: 600px;
+    height: 400px;
     margin: 20px auto;
     font-family: 'Roboto', sans-serif;
       z-index: 1;
