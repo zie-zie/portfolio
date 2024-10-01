@@ -17,6 +17,7 @@
     </div>  
     <router-view/>
     </div>
+    
 </template>
 
 <script>
@@ -26,6 +27,7 @@ import AddTodoList from './components/AddTodoList'
 import LoginUser from './components/LoginUser.vue';
 import { mapStores } from 'pinia';
 import { useLoginStore } from './stores/LoginStore';
+
 export default {
   name: 'App',
   computed:{
@@ -38,16 +40,20 @@ export default {
       showAddList:false,
       name:'',
       loginpage:true,
+      
      
     };
   },
   components: {
-    ApiInfo, todolistAll,AddTodoList,LoginUser
+    ApiInfo, todolistAll,AddTodoList,LoginUser,
   },
   methods:{
+
+
     handelLogin(){
       this.loginpage=false;
       console.log('handellogin')
+      
     },
     lockManage(){
       this.loginpage=true;

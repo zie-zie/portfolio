@@ -12,7 +12,9 @@
     "core-js": "^3.8.3",
     "pinia": "^2.2.2",
     "vue": "^3.2.13",
-    "vue-router": "^4.4.3"
+    "vue-color-kit": "^1.0.6",
+    "vue-router": "^4.4.3",
+    "vue3-colorpicker": "^2.3.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",

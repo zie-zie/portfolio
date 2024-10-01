@@ -1,6 +1,7 @@
 <template>
   <div>
     <p class="title">{{ title }}</p>
+   
     <table class="table">
       <thead>
         <tr>
@@ -16,18 +17,27 @@
       </tbody>
     </table>
   </div>
+  
 </template>
 
 <script>
+
+import color from "./color.vue";
 export default {
   data() {
     return {
       title: 'API INFO',
       datainfo: {},
+      colornumber: { hex: '#fff00' }
     };
   },
+  components: {
+    color,
+  },
+ 
   mounted() {
-    this.$router.push('/App.vue');
+    
+    this.$router.push('/app');
     fetch('https://todoapi.arjoni.de/api/info')
       .then((res) => res.json())
       .then((data) => {
@@ -36,12 +46,14 @@ export default {
       })
       .catch((err) => console.error('Error fetching data:', err));
   },
+
+
 };
 </script>
 
 <style>
 .title {
-  color: rgb(199, 141, 16);
+  color: rgb(16, 170, 170);
   font-weight: bold;
   font-size: 26px;
   margin-bottom: 20px;
